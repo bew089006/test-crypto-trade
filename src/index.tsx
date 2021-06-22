@@ -3,18 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
-import CryptoDetail from './components/homepage/crypto-detail';
-import Routes from './routes';
 
 const dotenv = require('dotenv').config()
 
 ReactDOM.render(
   <React.StrictMode>
     {console.log(dotenv)}
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

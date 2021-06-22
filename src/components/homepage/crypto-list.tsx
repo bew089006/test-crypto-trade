@@ -2,9 +2,18 @@ import { useEffect, useState } from "react";
 import styles from './crypto-list.module.scss';
 import CryptoDetail from "./crypto-detail";
 import { Link, Route } from "react-router-dom";
+import history from '../../history';
 
 const axios: any = require('axios');
 
+const mockupData: any[] = [
+  {
+    asset_id: "BTC",
+    name: "Bitcoin",
+    price_usd: 54000,
+    data_end: "2021-01-06"
+  }
+];
 interface ICrypto {
   asset_id:     string;  
   name:         string;
@@ -41,9 +50,7 @@ const CrytoDetail: React.FC<any> = (props: { data: ICrytoWithIndex }) => {
     <th>
       <button 
         className={styles.view} 
-        onClick={() => {
-          return <Route exact path="/hompage/:asset_id" component={CryptoDetail} />
-        }}
+        onClick={() => history.push(`crypto/${data.asset_id}`)}
       >View</button>
     </th>
   </tr>
@@ -51,13 +58,13 @@ const CrytoDetail: React.FC<any> = (props: { data: ICrytoWithIndex }) => {
 
 const CryptoList: React.FC = () => {
   const [cryptoData, setCryptoData] = useState([]);
-
+  // setCryptoData(mockupData);
   const headers: string[] = ['ลำดับที่', "Asset Name", "Name", "lasted Price", "Last Updated DateTime"];
 
   useEffect(() => {
-    fetchData().then((res) => {
-      setCryptoData(res.data)
-    });
+    // fetchData().then((res) => {
+    //   setCryptoData(res.data)
+    // });
   }, []);
 
   return <div className={styles.wrapper}>
@@ -66,7 +73,8 @@ const CryptoList: React.FC = () => {
       <tr key={"header"}>
         {headers.map(ele => <th>{ele}</th>)}
       </tr>
-      {cryptoData.map((ele: ICrypto, index: number) => {
+      {/* {cryptoData.map((ele: ICrypto, index: number) => { */}
+      {mockupData.map((ele: ICrypto, index: number) => {
         return <CrytoDetail key={index} data={{ index, ...ele }}/>
       })}
     </table>
