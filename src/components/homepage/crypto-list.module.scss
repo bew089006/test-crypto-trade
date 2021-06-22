@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+
+    .view {
+      width: 80px;
+      height: 50px;
+    }
+
+    .blueprint {
+      display: flex;
+      justify-content: start;
+    }
+
+    .index { 
+      @extend .blueprint;
+      flex-basis: 10%; 
+    }
+    .asset_id { 
+      @extend .blueprint;
+      flex-basis: 10%; 
+    }
+    .name { 
+      @extend .blueprint;
+      flex-basis: 20%; 
+    }
+    .price_usd { 
+      @extend .blueprint;
+      flex-basis: 40%; 
+    }
+    .date_end { 
+      @extend .blueprint;
+      flex-basis: 25%; 
+    }
+  } 
+}
